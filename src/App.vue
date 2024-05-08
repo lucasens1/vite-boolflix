@@ -1,10 +1,41 @@
-<script setup>
+<script>
+import AppHeader from './components/AppHeader.vue';
+import AppMain from './components/AppMain.vue';
+import AppFooter from './components/AppFooter.vue';
+import {store} from './data/store.js';
+import axios from "axios";
 
+export default {
+  components : {
+        AppHeader,
+        AppMain,
+        AppFooter
+      },
+  data(){
+    return{
+      store,
+    }
+  },
+  //All'avvio inizializzo la connessione all'API
+  created(){
+    axios.get('https://api.themoviedb.org/3/search/movie', {
+      params : {
+        api_key: this.store.apiKey,
+      }}).then((resp)=>{
+      console.log(resp.data.results);
+    });
+  },
+};
 </script>
 
 <template>
-  <p>ciao</p>
-  Test icon : <i class="fa-solid fa-user"></i>
+  <div class="container-fluid">
+    <AppHeader />
+    <AppMain />
+    <AppFooter />
+    <!--ciao
+    <span class="fa-solid fa-user"></span> -->
+  </div>
 </template>
 
 <style scoped>
