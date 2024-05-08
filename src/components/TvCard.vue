@@ -20,19 +20,53 @@ export default {
             //Trasformo in voto da 1 a 5
             let votoStars = Math.ceil(vote / 2); 
             return votoStars;
+        },
+        tvBanner(){
+            return this.tvObject.poster_path;
         }
     }
 }
 </script>
 
 <template>
-    <div class="my_card border-0 p-4 rounded-4 h-100 d-flex flex-column justify-content-between">
-        <p> {{ tvTitle }} </p>
-        <p> {{ originalTvTitle }} </p>
-        <p> {{ originalTvLanguage }} </p>
-        <p> {{ tvVote }} </p>
+    <div class="my_card border border-1 p-4 rounded-4 h-100 d-flex flex-column justify-content-between">
+        <div class="front-card">
+            <img :src="`https://image.tmdb.org/t/p/w342/${tvBanner}`" />
+        </div>
+        <div class="back-card">
+            <p><strong>Titolo :</strong> {{ tvTitle }}</p>
+            <p><strong>Titolo originale :</strong> {{ originalTvTitle }} </p>
+            <p><strong>Voto :</strong> {{ tvVote }} </p>
+            <p><strong>Lingua originale :</strong> {{ originalTvLanguage }} </p>
+        </div>
     </div>
 </template>
 
-<style>
+<style scoped>
+.my_card{
+    position : relative;
+    height:100%;
+}
+.front-card{
+    padding : 10px;
+    img{
+        max-width : 100%;
+    }
+}
+.back-card{
+    display : none;
+    position : absolute;
+    top : 0;
+    left : 0;
+    width : 100%;
+    height : 100%;
+    padding: 10px;
+}
+/*All'hover sulla card*/
+.my_card:hover .front-card{
+    display:none;
+}
+.my_card:hover .back-card{
+    display:block;
+}
 </style>

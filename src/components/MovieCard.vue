@@ -42,11 +42,12 @@ export default {
     </div>
 </template>
 
-<style>
+<style scoped>
 .my_card{
     position : relative;
 }
 .front-card{
+    padding : 10px;
     img{
         max-width : 100%;
     }
@@ -58,7 +59,7 @@ export default {
     left : 0;
     width : 100%;
     height : 100%;
-    padding:10px;
+    padding: 10px;
 }
 /*All'hover sulla card*/
 .my_card:hover .front-card{
