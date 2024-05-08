@@ -49,7 +49,7 @@ export default {
      * Informazioni : funzione che prende dall'API, i Film corrispondenti in parte o del tutto alla searchQuery e le assegna al moviesArray 
      */
     getMovies(){
-      axios.get('https://api.themoviedb.org/3/search/tv', {
+      axios.get('https://api.themoviedb.org/3/search/movie', {
         params : {
           api_key : this.store.apiKey,
           query : this.store.searchQuery
@@ -67,7 +67,9 @@ export default {
       console.log("Ho clickato questa stringa sotto è la this.store.searchQuery : ");
       console.log(this.store.searchQuery);
       //Assegno quindi i film e serie TV che corrispondono a quella searchQuery
+      console.log("1 -> Serie TV" );
       this.getTvSeries();
+      console.log("2 -> Film ");
       this.getMovies();
     },
   },
