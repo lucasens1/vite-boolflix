@@ -29,15 +29,16 @@ export default {
 </script>
 
 <template>
-    <div class="my_card border border-1 p-4 rounded-4 h-100 d-flex flex-column justify-content-between">
+    <div class="my_card border border-1 rounded-4 h-100 d-flex flex-column justify-content-between">
         <div class="front-card">
             <img :src="`https://image.tmdb.org/t/p/w342/${tvBanner}`" />
         </div>
-        <div class="back-card">
+        <div class="back-card overflow-auto">
             <p><strong>Titolo :</strong> {{ tvTitle }}</p>
             <p><strong>Titolo originale :</strong> {{ originalTvTitle }} </p>
             <p><strong>Voto :</strong> {{ tvVote }} </p>
             <p><strong>Lingua originale :</strong> {{ originalTvLanguage }} </p>
+            <p><strong>Overview :</strong> {{this.tvObject.overview}} </p>
         </div>
     </div>
 </template>
@@ -51,6 +52,7 @@ export default {
     padding : 10px;
     img{
         max-width : 100%;
+        height : 100%;
     }
 }
 .back-card{
@@ -61,6 +63,7 @@ export default {
     width : 100%;
     height : 100%;
     padding: 10px;
+    color : white;
 }
 /*All'hover sulla card*/
 .my_card:hover .front-card{

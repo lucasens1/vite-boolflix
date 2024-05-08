@@ -3,6 +3,18 @@ export default {
     props : {
         movieObject : Object,
     },
+    data(){
+        return{
+            //Da sistemare concettualmente
+            flagImages : {
+                it : "../assets/ita.png",
+                fr : "../assets/france.png",
+                en : "../assets/en.png",
+                jp : "../assets/jap.png",
+                es : "../assets/usa.png",
+            }
+        }
+    },
     computed : {
         movieTitle(){
             return this.movieObject.title;
@@ -11,9 +23,11 @@ export default {
             return this.movieObject.original_title;
         },
         originalMovieLanguage(){
-            return this.movieObject.original_language;
+            let lang = this.movieObject.original_language;
+            return lang;
         },
         movieVote(){
+            //Da Aggiungere conversione in stelle
             let vote = this.movieObject.vote_average;
             //Arrotondo per eccesso
             vote = Math.ceil(vote);
@@ -29,15 +43,16 @@ export default {
 </script>
 
 <template>
-    <div class="my_card border border-1 p-4 rounded-4 h-100 d-flex flex-column justify-content-between">
+    <div class="my_card border border-1 rounded-4 h-100 d-flex flex-column justify-content-between">
         <div class="front-card">
             <img :src="`https://image.tmdb.org/t/p/w342/${movieBanner}`" />
         </div>
-        <div class="back-card">
+        <div class="back-card overflow-auto">
             <p><strong>Titolo :</strong> {{ movieTitle }}</p>
-            <p><strong>Titolo originale :</strong> {{ originalMovieTitle }} </p>
+            <p><strong>Titolo originale :</strong> {{originalMovieTitle}} </p>
             <p><strong>Voto :</strong> {{ movieVote }} </p>
             <p><strong>Lingua originale :</strong> {{originalMovieLanguage}} </p>
+            <p><strong>Sinossi :</strong> {{this.movieObject.overview}} </p>
         </div>
     </div>
 </template>
@@ -45,11 +60,13 @@ export default {
 <style scoped>
 .my_card{
     position : relative;
+    height : 100%;
 }
 .front-card{
     padding : 10px;
     img{
         max-width : 100%;
+        height:100%;
     }
 }
 .back-card{
@@ -60,6 +77,7 @@ export default {
     width : 100%;
     height : 100%;
     padding: 10px;
+    color : white;
 }
 /*All'hover sulla card*/
 .my_card:hover .front-card{
