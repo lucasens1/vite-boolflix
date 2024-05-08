@@ -20,6 +20,9 @@ export default {
             //Trasformo in voto da 1 a 5
             let votoStars = Math.ceil(vote / 2); 
             return votoStars;
+        },
+        movieBanner(){
+            return this.movieObject.poster_path;
         }
     }
 }
@@ -27,12 +30,41 @@ export default {
 
 <template>
     <div class="my_card border border-1 p-4 rounded-4 h-100 d-flex flex-column justify-content-between">
-        <p> {{ movieTitle }} </p>
-        <p> {{ originalMovieTitle }} </p>
-        <p> {{ originalMovieLanguage }} </p>
-        <p> {{ movieVote }} </p>
+        <div class="front-card">
+            <img :src="`https://image.tmdb.org/t/p/w342/${movieBanner}`" />
+        </div>
+        <div class="back-card">
+            <p><strong>Titolo :</strong> {{ movieTitle }}</p>
+            <p><strong>Titolo originale :</strong> {{ originalMovieTitle }} </p>
+            <p><strong>Voto :</strong> {{ movieVote }} </p>
+            <p><strong>Lingua originale :</strong> {{originalMovieLanguage}} </p>
+        </div>
     </div>
 </template>
 
 <style>
+.my_card{
+    position : relative;
+}
+.front-card{
+    img{
+        max-width : 100%;
+    }
+}
+.back-card{
+    display : none;
+    position : absolute;
+    top : 0;
+    left : 0;
+    width : 100%;
+    height : 100%;
+    padding:10px;
+}
+/*All'hover sulla card*/
+.my_card:hover .front-card{
+    display:none;
+}
+.my_card:hover .back-card{
+    display:block;
+}
 </style>
