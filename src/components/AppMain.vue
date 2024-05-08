@@ -1,8 +1,11 @@
 <script>
+
 </script>
 
 <template>
-    <h1> Main </h1>
+    <div class="text-center">
+        Cerca qualcosa
+    </div>
 </template>
 
 <style>

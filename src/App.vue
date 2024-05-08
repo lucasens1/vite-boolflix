@@ -18,18 +18,23 @@ export default {
   },
   //All'avvio inizializzo la connessione all'API
   created(){
-    axios.get('https://api.themoviedb.org/3/search/movie', {
+    this.getInitialized()
+  },
+  methods : {
+    getInitialized(){
+      axios.get('https://api.themoviedb.org/3/search/movie', {
       params : {
         api_key: this.store.apiKey,
       }}).then((resp)=>{
       console.log(resp.data.results);
     });
-  },
+    }
+  }
 };
 </script>
 
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid p-0">
     <AppHeader />
     <AppMain />
     <AppFooter />
