@@ -12,7 +12,8 @@ export default {
                 en : "../assets/en.png",
                 jp : "../assets/jap.png",
                 es : "../assets/usa.png",
-            }
+            },
+            votoInStelle : 5
         }
     },
     computed : {
@@ -43,14 +44,20 @@ export default {
 </script>
 
 <template>
-    <div class="my_card border border-1 rounded-4 h-100 d-flex flex-column justify-content-between">
-        <div class="front-card">
+    <div class="my_card h-100 d-flex flex-column justify-content-between">
+        <div class="front-card h-100 border border-1">
             <img :src="`https://image.tmdb.org/t/p/w342/${movieBanner}`" />
         </div>
-        <div class="back-card overflow-auto">
+        <div class="back-card overflow-auto border border-1">
             <p><strong>Titolo :</strong> {{ movieTitle }}</p>
             <p><strong>Titolo originale :</strong> {{originalMovieTitle}} </p>
-            <p><strong>Voto :</strong> {{ movieVote }} </p>
+            <!-- Inserire stelle -->
+            <p><strong>Voto :</strong>
+                <span v-for = "i in movieVote">
+                    <i v-if="i <= movieVote" class="fa-solid fa-star"></i>
+                </span>
+            </p>
+            <!-- Work in progress -->
             <p><strong>Lingua originale :</strong> {{originalMovieLanguage}} </p>
             <p><strong>Sinossi :</strong> {{this.movieObject.overview}} </p>
         </div>
@@ -61,6 +68,7 @@ export default {
 .my_card{
     position : relative;
     height : 100%;
+    min-height: 350px;
 }
 .front-card{
     padding : 10px;
@@ -78,6 +86,7 @@ export default {
     height : 100%;
     padding: 10px;
     color : white;
+    background-color : black;
 }
 /*All'hover sulla card*/
 .my_card:hover .front-card{
@@ -85,5 +94,8 @@ export default {
 }
 .my_card:hover .back-card{
     display:block;
+}
+i{
+    color : yellow;
 }
 </style>

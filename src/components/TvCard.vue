@@ -29,14 +29,18 @@ export default {
 </script>
 
 <template>
-    <div class="my_card border border-1 rounded-4 h-100 d-flex flex-column justify-content-between">
-        <div class="front-card">
+    <div class="my_card h-100 d-flex flex-column justify-content-between">
+        <div class="front-card h-100 border border-1">
             <img :src="`https://image.tmdb.org/t/p/w342/${tvBanner}`" />
         </div>
         <div class="back-card overflow-auto">
             <p><strong>Titolo :</strong> {{ tvTitle }}</p>
             <p><strong>Titolo originale :</strong> {{ originalTvTitle }} </p>
-            <p><strong>Voto :</strong> {{ tvVote }} </p>
+            <p><strong>Voto :</strong>
+                <span v-for = "i in tvVote">
+                    <i v-if="i <= tvVote" class="fa-solid fa-star"></i>
+                </span>
+            </p>
             <p><strong>Lingua originale :</strong> {{ originalTvLanguage }} </p>
             <p><strong>Overview :</strong> {{this.tvObject.overview}} </p>
         </div>
@@ -64,6 +68,7 @@ export default {
     height : 100%;
     padding: 10px;
     color : white;
+    background-color : black;
 }
 /*All'hover sulla card*/
 .my_card:hover .front-card{
@@ -71,5 +76,8 @@ export default {
 }
 .my_card:hover .back-card{
     display:block;
+}
+i{
+    color : yellow;
 }
 </style>
